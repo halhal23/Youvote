@@ -3,7 +3,8 @@ FROM ruby:2.5.1
 RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - && \
     apt-get update -qq && \
     apt-get install -y build-essential \
-                       nodejs
+                       nodejs \
+                       vim
 
 RUN mkdir /webapp
 WORKDIR /webapp
