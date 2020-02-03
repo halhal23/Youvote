@@ -1,9 +1,11 @@
-nav {
+nav.header {
   background: #0082e6;
   height: 80px;
   width: 100%;
   display: flex;
   justify-content: space-between;
+  position: fixed;
+  z-index: 1;
 }
 
 label.logo {
@@ -19,15 +21,15 @@ label.logo span {
   font-family: 'Georgia';
 }
 
-nav ul {
+nav.header ul {
   display: flex;
 }
 
-nav ul li {
+nav.header ul li {
   transition: .3s;
 }
 
-nav ul li a {
+nav.header ul li a {
   line-height: 80px;
   padding: 0 30px;
   transition: .3s;
@@ -35,7 +37,7 @@ nav ul li a {
   display: block;
 }
 
-nav ul li a:hover {
+nav.header ul li a:hover {
   background: #0cc;
   color: white;
   text-decoration: none;
@@ -54,16 +56,26 @@ i.fas {
 }
 
 @media (max-width: 850px) {
-  nav {
+  nav.header {
     display: block;
+    height: 60px;
     width: 100%;
     display: flex;
     justify-content: space-between;
   }
 
+  label.logo {
+    font-size: 35px;
+    padding: 0 50px;
+    line-height: 60px;
+    margin: 0;
+    font-family:  'Georgia';
+  }
+
   i.fas {
     display: block;
     padding: 0 30px;
+    line-height: 60px;
   }
 
   label.checkbtn {
@@ -72,17 +84,17 @@ i.fas {
     margin-right: 30px;
   }
 
-  nav ul {
+  nav.header ul {
     display: block;
     position: fixed;
-    top: 80px;
+    top: 60px;
     left: -100%;
     background: #2c3e50;
     transition: all .4s ;
     width: 100%;
   }
 
-  nav ul li {
+  nav.header ul li {
     border-bottom: 1px solid white;
   }
 
