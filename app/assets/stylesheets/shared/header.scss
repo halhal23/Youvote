@@ -1,0 +1,94 @@
+nav {
+  background: #0082e6;
+  height: 80px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+label.logo {
+  color: white;
+  font-size: 35px;
+  line-height: 80px;
+  padding: 0 80px;
+  margin: 0;
+  font-family:  'Georgia';
+}
+
+label.logo span {
+  font-family: 'Georgia';
+}
+
+nav ul {
+  display: flex;
+}
+
+nav ul li {
+  transition: .3s;
+}
+
+nav ul li a {
+  line-height: 80px;
+  padding: 0 30px;
+  transition: .3s;
+  color: white;
+  display: block;
+}
+
+nav ul li a:hover {
+  background: #0cc;
+  color: white;
+  text-decoration: none;
+}
+
+#check {
+  display: none;
+}
+
+i.fas {
+  font-size: 33px;
+  line-height: 80px;
+  color: white;
+  display: none;
+  cursor: pointer;
+}
+
+@media (max-width: 850px) {
+  nav {
+    display: block;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  i.fas {
+    display: block;
+    padding: 0 30px;
+  }
+
+  label.checkbtn {
+    margin-left: auto;
+    margin-bottom: 0;
+    margin-right: 30px;
+  }
+
+  nav ul {
+    display: block;
+    position: fixed;
+    top: 80px;
+    left: -100%;
+    background: #2c3e50;
+    transition: all .4s ;
+    width: 100%;
+  }
+
+  nav ul li {
+    border-bottom: 1px solid white;
+  }
+
+  #check:checked ~ ul {
+    display: block;
+    left: 0;
+  }
+
+}
