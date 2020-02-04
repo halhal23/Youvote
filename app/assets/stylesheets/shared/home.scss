@@ -1,0 +1,44 @@
+// Place all the styles related to the home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.top-wrapper {
+  width: 100%;
+  min-height: 100vh;
+  background-image: url(top-page-bg.jpg);
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.top-content {
+  background: rgba(0, 0, 0, .5);
+  width: 600px;
+  color: white;
+  padding: 50px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px black;
+}
+
+.intro-title {
+  font-size: 30px;
+  letter-spacing: 2px;
+}
+
+.intro-comment {
+  font-size: 14px;
+  color: #ddd;
+  margin-bottom: 100px;
+}
+
+@media (max-width: 850px) {
+  .top-wrapper {
+    display: block;
+  }
+
+  .top-content {
+    width: 100%;
+  }
+}
