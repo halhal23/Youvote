@@ -2,14 +2,24 @@
   <label class="logo">You<span>Vote<span></label>
   <input type="checkbox" id="check">
   <label for="check" class="checkbtn">
-    <i class="fas fa-align-justify"></i>   
+    <i class="fas fa-align-justify header-icon"></i>   
   </label>
   
-  <ul>
-    <li><%= link_to "Home", root_path %></li>
-    <li><a href="#">About</a></li>
-    <li><a href="#">Services</a></li>
-    <li><a href="#">Contact</a></li>
-    <li><a href="#">Feedback</a></li>
-  </ul>
+  <% if @current_user %>
+    <ul>
+      <li><a href="#"><%= @current_user.name %></a></li>
+      <li><%= link_to "Home", root_path %></li>
+      <li><%= link_to "Logout", logout_path, method: :delete, data: { confirm: "ログアウトしますか？" } %></li>
+      <li><a href="#">Contact</a></li>
+      <li><a href="#">Feedback</a></li>
+    </ul>
+  <% else %>
+    <ul>
+      <li><%= link_to "Home", root_path %></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Services</a></li>
+      <li><a href="#">Contact</a></li>
+      <li><a href="#">Feedback</a></li>
+    </ul>
+  <% end %>
 </nav>

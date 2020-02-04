@@ -12,6 +12,9 @@
   <body>
     <%= render 'shared/header' %>
     <div class="all-pad"></div>
+    <% if flash[:notice] %>
+      <%= render "shared/flash" %>
+    <% end %>
     <%= yield %>
   </body>
 </html>
