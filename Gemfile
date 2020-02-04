@@ -38,6 +38,11 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bootstrap', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'font-awesome-sass', '~> 5.4.1'
+gem 'pry-byebug'
+gem 'kaminari'
+gem 'rails-i18n'
+gem 'annotate'
+gem 'mini_magick', '~> 4.8'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

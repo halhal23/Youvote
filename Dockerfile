@@ -4,7 +4,8 @@ RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - && \
     apt-get update -qq && \
     apt-get install -y build-essential \
                        nodejs \
-                       vim
+                       vim \
+                       imagemagick
 
 RUN mkdir /webapp
 WORKDIR /webapp
