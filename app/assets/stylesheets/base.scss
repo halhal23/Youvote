@@ -2,9 +2,6 @@ body {
   background: white;
   width: 100vw;
   min-height: 100vh;
-  background-image: url(top-page-bg.jpg);
-  background-size: cover;
-  background-position: center;
 }
 
 * {
@@ -13,6 +10,16 @@ body {
   text-decoration: none;
   list-style: none;
   box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+a:hover {
+  text-decoration: none;
+  color: white;
 }
 
 .all-pad {
