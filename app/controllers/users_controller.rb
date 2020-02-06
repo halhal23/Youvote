@@ -1,11 +1,12 @@
 class UsersController < ApplicationController
-  before_action :find_user_by_id, only: [:show, :edit, :update, :destroy]
+  before_action :find_user_by_id, only: [:edit, :destroy]
 
   def index
     @users = User.all
   end
 
   def show
+    @user = current_user
   end
 
   def new
@@ -15,6 +16,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      session[:user_id] = @user.id
       redirect_to @user, flash: {
         notice: "会員登録ありがとうございます！"
       }
@@ -26,16 +28,19 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @user = current_user
   end
 
   def update
-    @user.assign_attributes(user_params)
+    @user = current_user
+    @user.assign_attributes(update_user_params)
     if @user.save
       redirect_to @user, flash: {
         notice: "会員情報を編集致しました。"
       }
     else
       redirect_to @user, flash: {
+        notice: "更新に失敗しました。",
         error_messages: @user.errors.full_messages
       }
     end
@@ -51,6 +56,10 @@ class UsersController < ApplicationController
   private
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
+  end
+
+  def update_user_params
+    params.require(:user).permit(:name, :email, :new_profile_picture)
   end
 
   def find_user_by_id

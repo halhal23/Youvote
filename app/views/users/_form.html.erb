@@ -1,27 +1,27 @@
-<%= form_for user do |f| %>
-  <div class="modal-body">
+<div class="modal-body">
+  <div class="form-group">
+    <%= form.label :name, "名前" %>
+    <%= form.text_field :name, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= form.label :email, "Eメール" %>
+    <%= form.email_field :email, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= form.label :new_profile_picture, "プロフィール画像" %>
+    <%= form.file_field :new_profile_picture, class: "form-control" %>
+  </div>
+  
+  <% unless controller.controller_name == "users" %>
     <div class="form-group">
-      <%= f.label :name, "名前" %>
-      <%= f.text_field :name, class: "form-control" %>
+      <%= form.label :password, "パスワード" %>
+      <%= form.password_field :password, class: "form-control" %>
     </div>
     <div class="form-group">
-      <%= f.label :email, "Eメール" %>
-      <%= f.email_field :email, class: "form-control" %>
+      <%= form.label :password_confirmation, "パスワード(確認)" %>
+      <%= form.password_field :password_confirmation, class: "form-control" %>
     </div>
-    
-    <% unless controller.controller_name == "users" %>
-      <div class="form-group">
-        <%= f.label :password, "パスワード" %>
-        <%= f.password_field :password, class: "form-control" %>
-      </div>
-      <div class="form-group">
-        <%= f.label :password_confirmation, "パスワード(確認)" %>
-        <%= f.password_field :password_confirmation, class: "form-control" %>
-      </div>
-    <% end %>
-  </div>
-  <div class="modal-footer">
-    <%= f.submit "送信", class: "btn btn-outline-primary" %>
-    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">閉じる</button>
-  </div>
-<% end %>
+  <% end %>
+</div>
+
+

@@ -39,8 +39,14 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-      </div>
-      <%= render partial: "users/form", locals: { user: @user } %>
+      </div>      
+      <%= form_for @user do |f| %>
+        <%= render partial: "users/form", locals: { form: f } %>
+        <div class="modal-footer">
+          <%= f.submit "登録", class: "btn btn-outline-primary" %>
+          <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">閉じる</button>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
