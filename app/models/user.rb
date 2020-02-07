@@ -21,4 +21,14 @@ class User < ApplicationRecord
       self.profile_picture = new_profile_picture
     end
   end
+
+  class << self
+    def search(query)
+      rel = order("id")
+      if query.present?
+        rel = rel.where("name like ?", "%#{query}%")
+      end
+      rel
+    end
+  end
 end

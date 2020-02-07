@@ -1,12 +1,11 @@
 class UsersController < ApplicationController
-  before_action :find_user_by_id, only: [:edit, :destroy]
+  before_action :find_user_by_id, only: [:show, :edit, :destroy]
 
   def index
     @users = User.all
   end
 
   def show
-    @user = current_user
   end
 
   def new
@@ -51,6 +50,15 @@ class UsersController < ApplicationController
     redirect_to root_path, flash: {
       notice: "会員登録を解除いたしました。"
     }
+  end
+
+  def search
+    @users = User.search(params[:q])
+    render "index"
+  end
+
+  def mypage
+    @user = @current_user
   end
 
   private

@@ -13,24 +13,126 @@
   align-items: center;
 }
 
-.top-content {
+.bg-black-cover {
+  width: 100%;
+  height: 100vh;
   background: rgba(0, 0, 0, .5);
-  width: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.top-card-wrapper {
+  width: 1000px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-family: consolas;
+  position: relative;
+}
+
+.top-card {
+  position: relative;
+}
+
+.top-card .face {
+  width: 300px;
+  height: 200px;
+  transition: 0.5s;
+}
+
+.top-card .face1 .content {
+  text-align: center;
+}
+
+.top-card .face.face1 {
+  position: relative;
+  background: rgb(46, 81, 177);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  transform: translateY(100px);
+  transition: 0.4s;
+}
+
+.top-card:hover .face.face1 {
+  background: #5ae66a;
+  transform: translateY(0);
+}
+
+.top-card .face.face2 {
+  position: relative;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+  transition: 0.4s;
+  transform: translateY(-100px);
+}
+
+.top-card:hover .face.face2 {
+  transform: translateY(0);
+}
+
+.top-card-icon {
+  font-size: 80px;
   color: white;
-  padding: 50px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px black;
+  opacity: 0.6;
+  transition: 0.4s;
+  margin-bottom: 30px;
 }
 
-.intro-title {
-  font-size: 30px;
-  letter-spacing: 2px;
+.top-card:hover .top-card-icon {
+  opacity: 1;
 }
 
-.intro-comment {
+.top-card .face.face2 .content {
+  transition: 0.4s;
+}
+
+.top-card .face .content h3 {
+  color: white;
+  letter-spacing: 3px;
+  opacity: 0.6;
+}
+
+.top-card:hover .face .content h3 {
+  opacity: 1;
+}
+
+.top-card .face.face2 .content a {
+  margin: 15px 0 0;
+  display: inline-block;
+  text-decoration: none;
+  font-weight: 900;
+  color: #333;
+  padding: 5px;
+  border: 1px solid #333;
+}
+
+.formButton {
+  padding: 5px 10px;
+  background: #fff;
+  border: 3px solid #333;
+  transition: .3s;
+}
+
+.formButton:hover {
+  background: #333;
+  color: white;
+}
+
+.top-link-wrapper {
+  width: 100%;
+  text-align: center;
+}
+
+.top-card .face .content p {
   font-size: 14px;
-  color: #ddd;
-  margin-bottom: 100px;
 }
 
 @media (max-width: 850px) {

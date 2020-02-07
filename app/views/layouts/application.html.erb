@@ -12,7 +12,9 @@
   <body>
     <%= render 'shared/header' %>
     <div class="all-pad"></div>
-    <%= render 'shared/sidebar' %>
+    <% if @current_user %>
+      <%= render 'shared/sidebar' %>
+    <% end %>
     <% if flash[:notice] %>
       <%= render "shared/flash" %>
     <% end %>

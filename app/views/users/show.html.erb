@@ -1,42 +1,60 @@
-<% if @user.present? %>
-  <h1><%= @user.name %></h1>
-  <p><%= @user.email %></p>
-  <% if @user.profile_picture.attached? %>
-    <%= image_tag @user.profile_picture.variant(resize: "300x300"), class: "profile-picture" %>
-  <% end %>
+<div class="current-user-wrapper user-show-wrapper">
 
+  <div class="user-profile-wrapper">
+    <div class="user-profile">
+      <% if @user.profile_picture.attached? %>
+        <%= image_tag @user.profile_picture.variant(resize: "348x498") %>
+      <% end %>
+      <div class="image-wrapper">
+        <% if @user.profile_picture.attached? %>
+          <%= image_tag @user.profile_picture.variant(resize: "100x100") %>
+        <% end %>
+      </div>
+      <div class="name-wrapper">
+        <p><%= @user.name %></p>
+      </div>
+      <div class="action-wrapper">
+        <div class="icon add">
+          <i class="fas fa-plus fa"></i>
+        </div>
+        <div class="icon groups ml-3">
+          <i class="fab fa-accusoft fa"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+  
   <!-- Button trigger modal -->
   <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal">
     編集
   </button>
-
-  <%= link_to "退会", @user, class: "btn btn-outline-danger ml-5", method: "delete", data: { confirm: "本当に会員登録を解除してもよろしいでしょうか？" } %>
-
-<% else %>
-  <h1>ユーザーは見つかりませんでした。</h1>
-<% end %>
-
-<% if flash[:error_massages] %>
+  
+  
+  
+  
+  <% if flash[:error_massages] %>
   <h1><%= flash[:error_massages] %></h1>
   <h2>helooo</h2>
-<% end %>
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <%= form_for @user, url: user_path(@user) do |f| %>
+  <% end %>
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <%= form_for @user, url: user_path(@user) do |f| %>
         <%= render partial: "users/form", locals: { form: f } %>
         <div class="modal-footer">
           <%= f.submit "登録", class: "btn btn-outline-primary" %>
           <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">閉じる</button>
         </div>
-      <% end %>
+        <% end %>
+      </div>
     </div>
   </div>
+  
 </div>

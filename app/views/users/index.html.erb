@@ -1,32 +1,68 @@
-<h1>Users#index</h1>
-<h1>Users#index</h1>
-<h1>Users#index</h1>
-<h1>Users#index</h1>
-<h1>Users#index</h1>
-<p>Find  in app/views/users/index.html.erb</p>
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-  buttun
-</button>
+<div class="current-user-wrapper">
+  <div class="user-search-wrapper">
+    <%= form_tag(:search_users, method: :get, class: "user-search-form") do %>
+      <%= submit_tag "検索", class: "btn btn-secondary" %>
+      <%= text_field_tag :q, params[:q], class: "form-control ml-3" %>
+    <% end %>
+  </div>
+  <div class="users-card-wrapper">
+    <% @users.each do |user| %>
+      <div class="user-card">
+        <% if user.profile_picture.attached? %>
+          <%= image_tag user.profile_picture.variant(resize: "120x120") %>
+        <% else %>
+        <div class="user-header-icon-nothing">
+          <i class="fas fa-grimace"></i>
+          <p>NO IMAGE</p>
+        </div>
+        <% end %>
+        
+        <div class="user-card-name-wrapper">
+          <h3><%= user.name%></h3>
+        </div>
+        <%= link_to user, class: "action show" do %>
+          <i class="fas fa-user-circle"></i>
+          <p>Show</p>
+        <% end %>
+        <div class="action add" data-toggle="modal" data-target="#exampleModal<%= user.id %>">
+          <i class="fas fa-plus-circle"></i>
+          <p>Add</p>
+        </div>
+        <div class="action delete">
+          <i class="fas fa-ban"></i>
+          <p>Block</p>
+        </div>
+      </div>
 
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal<%= user.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel"><%= user.name %></h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
+
+
+    <% end %>
+  </div>
+
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    buttun
+  </button>
+  
+  

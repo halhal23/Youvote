@@ -1,16 +1,80 @@
 <div class="top-wrapper">
-  <div class="top-content">
-    <h2 class="intro-title">YouVoteへようこそ</h2>
-    <p class="intro-comment">自由に議題を決め、投票を行い、チームの意思決定に役立ててください。</p>
+  <div class="bg-black-cover">
+    <div class="top-card-wrapper">
+      <div class="top-card">
+        <div class="face face1">
+          <div class="content">
+            <i class="fab fa-500px top-card-icon"></i>
+            <h3>About</h3>
+          </div>
+        </div>
+        <div class="face face2">
+          <div class="content">
+            <p>
+              このサイトの使用方法や<br>
+              使われている使用技術について、<br>
+              もっと詳しく知りたい方は、<br>
+              こちらをご覧ください。
+            </p>
+            <div class="top-link-wrapper">
+              <%= link_to "Read More", "#" %>
+            </div>
+          </div>
+        </div>
+      </div>
 
+      <div class="top-card">
+        <div class="face face1">
+          <div class="content">
+            <i class="fab fa-asymmetrik top-card-icon"></i>
+            <h3>Let's Vote</h3>
+          </div>
+        </div>
+        <div class="face face2">
+          <div class="content">
+            <p>
+              ユーザ登録、ログインをして、<br>
+              早速をYouvoteをお使い下さい！<br>
+              なお、sampleユーザーも<br>
+              ご用意しておりますので、<br>
+              お急ぎに方は、<br>
+              そちらでログインも可能です。
+            </p>
+            <div class="top-link-wrapper">
 
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLogin">
-      ログイン
-    </button>
-    <button type="button" class="btn btn-success ml-4" data-toggle="modal" data-target="#exampleModalSignup">
-      新規登録
-    </button>
+                <button type="button" class="formButton login" data-toggle="modal" data-target="#exampleModalLogin">
+                  ログイン
+                </button>
+                <button type="button" class="formButton signUp ml-2" data-toggle="modal" data-target="#exampleModalSignup">
+                  新規登録
+                </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="top-card">
+        <div class="face face1">
+          <div class="content">
+            <i class="fas fa-mail-bulk top-card-icon"></i>
+            <h3>Contact</h3>
+          </div>
+        </div>
+        <div class="face face2">
+          <div class="content">
+            <p>
+              このサイトで
+              使われている使用技術について、
+              もっと詳しく知りたい方は、
+              こちらをご覧ください。
+            </p>
+            <div class="top-link-wrapper">
+              <%= link_to "Read More", "#" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
