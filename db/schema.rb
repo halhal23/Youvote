@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_07_031621) do
+ActiveRecord::Schema.define(version: 2020_02_07_032937) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -40,6 +40,15 @@ ActiveRecord::Schema.define(version: 2020_02_07_031621) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "user_group_relations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "group_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["group_id"], name: "index_user_group_relations_on_group_id"
+    t.index ["user_id"], name: "index_user_group_relations_on_user_id"
+  end
+
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.string "email"
@@ -49,4 +58,6 @@ ActiveRecord::Schema.define(version: 2020_02_07_031621) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "user_group_relations", "groups"
+  add_foreign_key "user_group_relations", "users"
 end

@@ -1,0 +1,8 @@
+<div class="current-user-wrapper">
+  <div class="group-new-form-wrapper">
+    <%= form_for @group do |f| %>
+      <%= render partial: "form", locals: { form: f }  %>
+      <%= f.submit "作成", class: "btn btn-outline-primary" %>
+    <% end %>
+  </div>
+</div>

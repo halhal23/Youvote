@@ -1,0 +1,10 @@
+<div class="current-user-wrapper">
+  <h1><%= @group.name %></h1>
+  <p>管理者：<%= @administrator.name %></p>
+  <% @group.users.each do |user| %>
+    <h3><%= user.name %></h3>
+  <% end %>
+
+  <%= link_to "編集", "#", class: "btn btn-warning" %>
+  <%= link_to "ユーザ追加", :users, class: "btn btn-primary ml-3" %>
+</div>
