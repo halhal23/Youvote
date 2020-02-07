@@ -1,10 +1,231 @@
 <div class="current-user-wrapper">
-  <h1><%= @group.name %></h1>
-  <p>管理者：<%= @administrator.name %></p>
-  <% @group.users.each do |user| %>
-    <h3><%= user.name %></h3>
-  <% end %>
+  <div class="group-name-wrapper">
+    <h1><%= @group.name %></h1>
+  </div>
+  <div class="group-contents">
+    <div class="group-users-wrapper">
+      <div class="administrator card">
+        <%= link_to @administrator do %>
+        <% if @administrator.profile_picture.attached? %>
+          <%= image_tag @administrator.profile_picture.variant(resize: "40x40") %></p>
+        <% else %>
+          <div class="non-image">
+            <i class="fas fa-grimace"></i>
+          </div>
+        <% end %>
+        <p>管理者:<%= @administrator.name %></p>
+        <% end %>
+      </div>
+      <% @group.users.each do |user| %>
+      <% if user.name == @administrator.name %>
+        <% next %>
+      <% end %>
+      <div class="card">
+        <%= link_to user do %>
+        <% if user.profile_picture.attached? %>
+          <%= image_tag user.profile_picture.variant(resize: "40x40") %></p>
+        <% else %>
+          <div class="non-image">
+            <i class="fas fa-grimace"></i>
+          </div>
+        <% end %>
+        <p><%= user.name %></p>
+        <% end %> 
+      </div>
+      <% end %>
+    </div>
+    <div class="group-questions-wrapper">
 
-  <%= link_to "編集", "#", class: "btn btn-warning" %>
-  <%= link_to "ユーザ追加", :users, class: "btn btn-primary ml-3" %>
+      <% if @group.questions.present? %>
+      <% @group.questions.each_with_index do |q, index| %>
+      <div class="card">
+        <div class="status-wrapper">
+          <div class="finished">
+            sdfsfs
+          </div>
+          <div class="deadline-wrapper"></div>
+        </div>
+        <div class="details">
+          <div class="title-wrapper">
+            <p><%= q.title %></p>
+          </div>
+          <div class="action-wrapper">
+            <div class="choices">
+              <% q.choices.each do |c| %>
+                <p><%= c.name %></p>
+              <% end %> 
+            </div>
+            <div class="vote" data-toggle="modal" data-target="#vote<%= index %>">
+              <i class="fab fa-asymmetrik"></i>
+              <span>投票する</span>
+            </div>
+            <div class="show" data-toggle="modal" data-target="#show<%= index %>">
+              <i class="fas fa-book"></i>
+              <span>詳細を見る</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <!-- 投票フォームの Modal -->
+    <div class="modal fade" id="vote<%= index %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel"><%= q.title %></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>選択肢</p>
+            <% q.choices.each_with_index do |choice, i| %>
+            <p><%= i + 1 %>: <%= choice.name %></p>
+            <% end %>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">閉じる</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 詳細表示の Modal -->
+    <div class="modal fade" id="show<%= index %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel"><%= q.title %></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <%= q.detail %>
+            <hr>
+            <p>選択肢</p>
+            <% q.choices.each_with_index do |choice, i| %>
+            <p><%= i + 1 %>: <%= choice.name %></p>
+            <% end %>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">閉じる</button>
+          </div>
+        </div>
+      </div>
+    </div>
+      <% end %>
+      <% else %>
+        <h2>質問はまだありません。</h2>
+      <% end %>
+    </div>
+  </div>
+
+
+
+
+
+
+
+  <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#questionCreate">
+    質問追加
+  </button>
+<% if @group.questions.present? %>
+<div class="question-card-wrapper">
+  <% @group.questions.each_with_index do |q, i| %>
+    <% idName = "show#{i}" %>
+      <!-- <div class="show" data-toggle="modal" data-target="#<%= idName %>"><%= q.title %></div> -->
+  
+    <div class="question-card"></div>
+  
+    <!-- 質問詳細の Modal -->
+    <div class="modal fade" id="<%= idName %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel"><%= q.title %></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <%= q.detail %>
+            <p>選択肢</p>
+            <% q.choices.each_with_index do |choice, i| %>
+            <p><%= i + 1 %>: <%= choice.name %></p>
+            <% end %>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">閉じる</button>
+          </div>
+        </div>
+      </div>
+    </div>
 </div>
+        <% end %>
+        <% end %>
+      </div>
+      
+
+
+
+
+
+
+<!-- 質問作成フォームの Modal -->
+<div class="modal fade" id="questionCreate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">質問</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <%= form_for @new_question do |f| %>
+        <div class="modal-body">
+          <%= f.hidden_field :group_id, value: @group.id %>
+          <div class="form-group">
+            <%= f.label :title, "名前" %>
+            <%= f.text_field :title, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :detail, "内容" %>
+            <%= f.text_area :detail, class: "form-control" %>
+          </div>
+          <div class="form-group" id="form-group">
+            <%= f.label :id, "選択肢" %>
+            <div id="choice">
+              <%= f.fields_for :choices do |c| %>
+                <%= c.text_field :name, autofocus: 'true', class: "form-control mb-1", required: true %>
+              <% end %>
+            </div>
+          </div>
+          <div class="form-plus-icon" id="plus">
+            <i class="fas fa-plus fa"></i>
+          </div>
+          <div class="form-group">
+            <%= f.label :deadline, "投票期限" %>
+            <%= f.date_select :deadline, class: "form-control" %>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <%= f.submit "送信", class: "btn btn-outline-primary" %>
+          <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">閉じる</button>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<script>
+  let target = document.getElementById('form-group');
+  let plus = document.getElementById('plus');
+  let num = 1;
+  plus.addEventListener('click', ()=> {
+    let choice= document.getElementById("choice");
+    let choice_copy = choice.cloneNode(true);
+    choice_copy.lastElementChild.setAttribute("name", `question[choices_attributes][${num}][name]` );
+    target.appendChild(choice_copy);
+    num += 1;
+  })
+</script>
