@@ -3,6 +3,7 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
+    @groups = Group.where(administrator: @current_user.id)
   end
 
   def show

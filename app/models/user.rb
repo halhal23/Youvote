@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+  has_many :user_group_relations
+  has_many :groups, through: :user_group_relations
+
   has_secure_password
   has_one_attached :profile_picture
 
