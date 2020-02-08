@@ -8,5 +8,12 @@
     <% end %>  
   <% end %>
   <%= link_to "新規作成", :new_group, class: "btn btn-outline-success" %>
+  <% if Rails.env.development? %>
+    開発環境のテキスト
+  <% elsif Rails.env.test? %>
+   テスト環境のテキスト
+  <% elsif Rails.env.production? %>
+    本番環境のテキスト
+  <% end %>
 </div>
   
