@@ -1,0 +1,218 @@
+// Place all the styles related to the questions controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.group-name-wrapper {
+  width: 100%;
+  text-align: center;
+  border-bottom: 1px solid #aaa;
+  padding: 20px 0;
+}
+
+.group-contents {
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+
+.group-users-wrapper {
+  width: 400px;
+  padding: 20px;
+  box-shadow: 0 0 30px gray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.group-users-wrapper .card {
+  width: 240px;
+  height: 50px;
+  box-shadow: 0 0 10px black;
+  border-radius: 20px;
+  margin-bottom: 20px;
+  padding-left: 15px;  
+}
+
+.group-users-wrapper .card a {
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row;
+}
+
+.group-users-wrapper .card a:hover {
+  color: black;
+}
+
+.group-users-wrapper .card.administrator {
+  box-shadow: 0 0 10px tomato;
+}
+
+.group-users-wrapper .card img {
+  border-radius: 20px;
+  border: 2px solid #ccc;
+}
+
+.group-users-wrapper  .card  p {
+  margin: 0 0 0 20px;
+  font-size: 18px;
+}
+
+.group-users-wrapper  .card.card.administrator  p {
+  margin-left: 10px;
+}
+
+.group-users-wrapper  .card  .non-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #ccc;
+  box-shadow: 0 0 4px gray;
+}
+
+.group-questions-wrapper {
+  width: 700px;
+  padding: 20px;
+  box-shadow: 0 0 30px gray;
+}
+
+.group-questions-wrapper > .card {
+  width: 100%;
+  height: 120px;
+  box-shadow: 0 0 30px gray;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.group-questions-wrapper > .card .status-wrapper {
+  width: 160px;
+  height: 100%;
+  border-right: 1px solid #aaa;
+}
+
+.group-questions-wrapper > .card .status-wrapper .finished {
+  width: 100%;
+  height: 90px;
+  border-bottom: 1px solid #aaa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.group-questions-wrapper > .card > .details {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.group-questions-wrapper > .card > .details > .title-wrapper {
+  width: 100%;
+  border-bottom: 1px solid #aaa;
+}
+
+.group-questions-wrapper > .card > .details > .title-wrapper p {
+  margin: 0;
+}
+
+.group-questions-wrapper > .card > .details > .action-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: row;
+}
+
+.group-questions-wrapper > .card > .details > .action-wrapper > .choices {
+  width: 30%;
+  height: 100%;
+  border-right: 1px solid #aaa;
+}
+.group-questions-wrapper > .card > .details > .action-wrapper > .vote,
+.group-questions-wrapper > .card > .details > .action-wrapper > .show
+{
+  width: 30%;
+  height: 100%;
+  border-right: 1px solid #aaa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  transition: .4s;
+}
+.group-questions-wrapper > .card > .details > .action-wrapper > .vote i,
+.group-questions-wrapper > .card > .details > .action-wrapper > .show i
+{
+  font-size: 30px;
+  margin-bottom: 10px;
+  color: #777;
+}
+.group-questions-wrapper > .card > .details > .action-wrapper > .vote span, 
+.group-questions-wrapper > .card > .details > .action-wrapper > .show span 
+{
+  color: #777;
+}
+.group-questions-wrapper > .card > .details > .action-wrapper > .vote:hover,
+.group-questions-wrapper > .card > .details > .action-wrapper > .show:hover 
+{
+  background: #777;
+  color: white;
+  cursor: pointer;
+}
+.group-questions-wrapper > .card > .details > .action-wrapper > .vote:hover i,
+.group-questions-wrapper > .card > .details > .action-wrapper > .show:hover i
+{
+  color: white;
+}
+.group-questions-wrapper > .card > .details > .action-wrapper > .vote:hover span,
+.group-questions-wrapper > .card > .details > .action-wrapper > .show:hover span
+{
+  color: white;
+}
+
+.group-questions-wrapper > .card > .details > .action-wrapper > .choices p {
+  font-size: 12px;
+  margin: 0;
+  color: #777;
+}
+
+.form-plus-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background: #ff0071;
+}
+
+.question-card-wrapper {
+  width: 100%;
+  padding: 20px;
+  background: #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.question-card {
+  width: 600px;
+  height: 80px;
+  background: #fff;
+}

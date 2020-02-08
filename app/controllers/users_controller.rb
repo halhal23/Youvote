@@ -55,6 +55,7 @@ class UsersController < ApplicationController
 
   def search
     @users = User.search(params[:q])
+    @groups = Group.where(administrator: @current_user.id)
     render "index"
   end
 

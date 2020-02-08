@@ -8,6 +8,8 @@ class GroupsController < ApplicationController
 
   def show
     @administrator = User.find(@group.administrator)
+    @new_question = Question.new(group_id: @group.id)
+    @new_question.choices.build
   end
 
   def new
