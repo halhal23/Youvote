@@ -1,5 +1,16 @@
 <div class="current-user-wrapper">
+
   <% if @groups.present? %>
+    <div class="groups-wrapper">
+      <div class="common mygroups-wrapper">
+        <div class="title">所属しているグループ</div>
+        <div class="group-card"></div>
+      </div>
+      <div class="common allgroups-wrapper">
+        <div class="title">全グループ</div>
+        <div class="group-card"></div>
+      </div>
+    </div>
     <% @groups.each do |group| %>
       <h1><%= link_to "#{group.name}", group %></h1>
       <% group.users.each do |user| %>
@@ -9,11 +20,53 @@
   <% end %>
   <%= link_to "新規作成", :new_group, class: "btn btn-outline-success" %>
   <% if Rails.env.development? %>
-    開発環境のテキスト
+    開発環境のテキストですよ
   <% elsif Rails.env.test? %>
    テスト環境のテキスト
   <% elsif Rails.env.production? %>
     本番環境のテキスト
   <% end %>
-</div>
+
+
+
+
+
+
+
+
+  <h2>gmap</h2>
+  <div id='map'></div>
   
+  <style>
+  #map{
+    height: 400px;
+  }
+  </style>
+  
+  <script>
+  function initMap(){
+
+    var target = document.getElementById('map');
+    var map;
+    var marker;
+    var tokyo = {lat: 35.681167, lng: 139.767052};
+
+    map = new google.maps.Map(target, {
+    center: tokyo,
+    zoom: 8,
+
+    });
+
+    marker = new google.maps.Marker({
+      position: tokyo,
+      map: map,
+      title: '東京',
+      animation: google.maps.Animation.DROP
+    });
+  }
+  </script>
+  <script src="https://maps.googleapis.com/maps/api/js?language=ja&region=JP&key=AIzaSyC0mCIH2nIt1xBCl8EeGH29-BVOPJlro5k&callback=initMap" async defer></script>
+</div>
+
+
+

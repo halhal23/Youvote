@@ -10,6 +10,7 @@ class GroupsController < ApplicationController
     @administrator = User.find(@group.administrator)
     @new_question = Question.new(group_id: @group.id)
     @new_question.choices.build
+    @new_vote = Vote.new(user_id: @current_user.id)
   end
 
   def new
