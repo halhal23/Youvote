@@ -10,3 +10,34 @@
 a {
   color: black;
 }
+
+.groups-wrapper {
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.groups-wrapper .common {
+  width: 600px;
+  box-shadow: 0px 0px 20px gray;
+  padding: 20px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+}
+
+.groups-wrapper .common .title {
+  width: 100%;
+  text-align: center;
+  border-bottom: 1px solid #777;
+  margin-bottom: 20px;
+}
+
+.groups-wrapper .common .group-card {
+  width: 100%;
+  border: 1px solid #777;
+  height: 140px;
+}

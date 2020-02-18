@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_07_092459) do
+ActiveRecord::Schema.define(version: 2020_02_08_135415) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 2020_02_07_092459) do
     t.string "title"
     t.text "detail"
     t.date "deadline"
-    t.boolean "finished"
+    t.boolean "finished", default: false
     t.bigint "group_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -76,9 +76,23 @@ ActiveRecord::Schema.define(version: 2020_02_07_092459) do
     t.string "password_digest"
   end
 
+  create_table "votes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "question_id"
+    t.bigint "choice_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["choice_id"], name: "index_votes_on_choice_id"
+    t.index ["question_id"], name: "index_votes_on_question_id"
+    t.index ["user_id"], name: "index_votes_on_user_id"
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "choices", "questions"
   add_foreign_key "questions", "groups"
   add_foreign_key "user_group_relations", "groups"
   add_foreign_key "user_group_relations", "users"
+  add_foreign_key "votes", "choices"
+  add_foreign_key "votes", "questions"
+  add_foreign_key "votes", "users"
 end

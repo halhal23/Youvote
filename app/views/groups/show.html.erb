@@ -40,10 +40,18 @@
       <% @group.questions.each_with_index do |q, index| %>
       <div class="card">
         <div class="status-wrapper">
-          <div class="finished">
-            sdfsfs
+          <% if q.finished %>
+            <div class="finished true">
+              投票終了
+            </div>
+          <% else %>
+            <div class="finished false">
+              投票中
+            </div>
+          <% end %>
+          <div class="deadline-wrapper">
+            <%= q.deadline.strftime("%Y年%m月%d日") %>まで
           </div>
-          <div class="deadline-wrapper"></div>
         </div>
         <div class="details">
           <div class="title-wrapper">
@@ -52,12 +60,23 @@
           <div class="action-wrapper">
             <div class="choices">
               <% q.choices.each do |c| %>
-                <p><%= c.name %></p>
+                <p>
+                  <%= c.name %> : 
+                  <% if c.votes.present? %>
+                    <%= c.votes.length %>票
+                  <% else %>    
+                    0票
+                  <% end %>
+                </p>
               <% end %> 
             </div>
             <div class="vote" data-toggle="modal" data-target="#vote<%= index %>">
-              <i class="fab fa-asymmetrik"></i>
-              <span>投票する</span>
+              <% if q.finished %>
+                <span><%= get_decision(q) %>に決定</span>
+              <% else %>
+                <i class="fab fa-asymmetrik"></i>
+                <span>投票する</span>
+              <% end %>
             </div>
             <div class="show" data-toggle="modal" data-target="#show<%= index %>">
               <i class="fas fa-book"></i>
@@ -79,8 +98,17 @@
           </div>
           <div class="modal-body">
             <p>選択肢</p>
-            <% q.choices.each_with_index do |choice, i| %>
-            <p><%= i + 1 %>: <%= choice.name %></p>
+            <%= form_for @new_vote do |f| %>
+              <div class="form-group">
+                <%= f.hidden_field :user_id, value: @new_vote.user_id %>
+                <%= f.hidden_field :question_id, value: q.id
+ %>
+                <%= f.select :choice_id, q.choices.collect { |c| [c.name, c.id] }, {}, class: "form-control" %>
+              </div>
+              <% q.choices.each_with_index do |choice, i| %>
+                <p><%= i + 1 %>: <%= choice.name %></p>
+              <% end %>
+              <%= f.submit "投票", class: "btn btn-outline-primary" %>
             <% end %>
           </div>
           <div class="modal-footer">
@@ -130,12 +158,10 @@
     質問追加
   </button>
 <% if @group.questions.present? %>
-<div class="question-card-wrapper">
-  <% @group.questions.each_with_index do |q, i| %>
-    <% idName = "show#{i}" %>
-      <!-- <div class="show" data-toggle="modal" data-target="#<%= idName %>"><%= q.title %></div> -->
+  <div class="question-card-wrapper">
+    <% @group.questions.each_with_index do |q, i| %>
+      <% idName = "show#{i}" %>
   
-    <div class="question-card"></div>
   
     <!-- 質問詳細の Modal -->
     <div class="modal fade" id="<%= idName %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -160,11 +186,10 @@
         </div>
       </div>
     </div>
-</div>
-        <% end %>
-        <% end %>
-      </div>
-      
+  </div>
+    <% end %>
+<% end %>
+</div>      
 
 
 
